@@ -1,587 +1,585 @@
-<!doctype html>\
-<html lang="en">\
-<head>\
-  <meta charset="utf-8" />\
-  <meta name="viewport" content="width=device-width, initial-scale=1" />\
-  <title>Arnav Kamath</title>\
-  <meta name="description" content="Arnav Kamath \'97 student portfolio" />\
-\
-  <style>\
-    :root\{\
-      --bg:#0a192f;\
-      --panel:#112240;\
-      --panel2:#0b1b33;\
-      --text:#ccd6f6;\
-      --muted:#8892b0;\
-      --accent:#64ffda;\
-      --line: rgba(255,255,255,.08);\
-      --shadow: 0 10px 30px rgba(2,12,27,.55);\
-      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;\
-      --sans: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;\
-      --radius: 16px;\
-    \}\
-\
-    *\{ box-sizing:border-box; \}\
-    html,body\{ height:100%; \}\
-    body\{\
-      margin:0;\
-      background: radial-gradient(900px 500px at 20% 10%, rgba(100,255,218,.10), transparent 55%),\
-                  radial-gradient(800px 500px at 85% 0%, rgba(37,99,235,.12), transparent 60%),\
-                  var(--bg);\
-      color:var(--text);\
-      font-family:var(--sans);\
-      line-height:1.6;\
-    \}\
-\
-    a\{ color: var(--accent); text-decoration:none; \}\
-    a:hover\{ text-decoration:underline; \}\
-\
-    .wrap\{\
-      max-width: 1100px;\
-      margin: 0 auto;\
-      padding: 28px 18px;\
-      display:grid;\
-      grid-template-columns: 320px 1fr;\
-      gap: 22px;\
-      min-height: 100vh;\
-    \}\
-\
-    /* Sidebar */\
-    .sidebar\{\
-      position: sticky;\
-      top: 18px;\
-      align-self: start;\
-      background: rgba(17,34,64,.55);\
-      border: 1px solid var(--line);\
-      border-radius: var(--radius);\
-      padding: 22px;\
-      box-shadow: var(--shadow);\
-      backdrop-filter: blur(10px);\
-    \}\
-\
-    .name\{\
-      font-size: 1.9rem;\
-      letter-spacing: -0.02em;\
-      margin: 0 0 8px 0;\
-    \}\
-\
-    .subtitle\{\
-      margin: 0 0 14px 0;\
-      color: var(--muted);\
-      font-size: 0.98rem;\
-    \}\
-\
-    /* Resume button */\
-    .resume-btn \{\
-      display: inline-block;\
-      margin-top: 12px;\
-      padding: 12px 18px;\
-      width: 100%;\
-      text-align: center;\
-      border: 1.5px solid rgba(100,255,218,.75);\
-      border-radius: 999px;\
-      font-family: var(--mono);\
-      font-size: 0.95rem;\
-      color: var(--accent);\
-      background: rgba(100,255,218,.06);\
-      transition: all .2s ease;\
-    \}\
-\
-    .resume-btn:hover \{\
-      background: rgba(100,255,218,.15);\
-      transform: translateY(-1px);\
-      box-shadow: 0 6px 20px rgba(100,255,218,.25);\
-      text-decoration: none;\
-    \}\
-\
-    .quicklinks\{\
-      margin-top: 18px;\
-      display:flex;\
-      flex-direction:column;\
-      gap: 10px;\
-      border-top: 1px solid var(--line);\
-      padding-top: 16px;\
-    \}\
-\
-    .quicklinks a\{\
-      color: var(--text);\
-      font-family: var(--mono);\
-      font-size: 0.92rem;\
-      opacity: .88;\
-    \}\
-    .quicklinks a:hover\{ opacity: 1; \}\
-\
-    .note\{\
-      margin-top: 18px;\
-      padding-top: 14px;\
-      border-top: 1px solid var(--line);\
-      color: var(--muted);\
-      font-size: 0.95rem;\
-    \}\
-\
-    /* Main */\
-    .main\{\
-      background: rgba(11,27,51,.42);\
-      border: 1px solid var(--line);\
-      border-radius: var(--radius);\
-      box-shadow: var(--shadow);\
-      overflow:hidden;\
-    \}\
-\
-    .topbar\{\
-      padding: 14px 14px 0 14px;\
-      border-bottom: 1px solid var(--line);\
-      background: linear-gradient(180deg, rgba(17,34,64,.55), rgba(11,27,51,.15));\
-    \}\
-\
-    .tabs\{\
-      display:flex;\
-      flex-wrap: wrap;\
-      gap: 8px;\
-      padding: 10px;\
-      margin: 0;\
-      list-style:none;\
-    \}\
-\
-    .tabbtn\{\
-      border: 1px solid var(--line);\
-      background: rgba(10,25,47,.35);\
-      color: var(--text);\
-      padding: 10px 12px;\
-      border-radius: 999px;\
-      cursor: pointer;\
-      font-family: var(--mono);\
-      font-size: 0.9rem;\
-      transition: transform .08s ease, border-color .2s ease, background .2s ease;\
-    \}\
-    .tabbtn:hover\{\
-      border-color: rgba(100,255,218,.45);\
-      transform: translateY(-1px);\
-    \}\
-    .tabbtn[aria-selected="true"]\{\
-      border-color: rgba(100,255,218,.75);\
-      background: rgba(100,255,218,.10);\
-      color: var(--accent);\
-    \}\
-\
-    .content\{\
-      padding: 22px;\
-    \}\
-\
-    .section\{\
-      display:none;\
-      animation: fadeUp .18s ease-out;\
-    \}\
-    .section.active\{ display:block; \}\
-\
-    @keyframes fadeUp\{\
-      from\{ opacity:0; transform: translateY(6px); \}\
-      to\{ opacity:1; transform: translateY(0); \}\
-    \}\
-\
-    .kicker\{\
-      font-family: var(--mono);\
-      color: var(--accent);\
-      font-size: 0.9rem;\
-      margin: 0 0 8px 0;\
-    \}\
-\
-    h2\{\
-      margin: 0 0 12px 0;\
-      letter-spacing: -0.01em;\
-      font-size: 1.45rem;\
-    \}\
-\
-    p\{ margin: 0 0 12px 0; color: var(--muted); \}\
-\
-    .grid\{\
-      display:grid;\
-      gap: 12px;\
-      grid-template-columns: 1fr;\
-    \}\
-\
-    .card\{\
-      border: 1px solid var(--line);\
-      border-radius: 14px;\
-      padding: 14px;\
-      background: rgba(17,34,64,.45);\
-    \}\
-\
-    .cardTitle\{\
-      display:flex;\
-      align-items: baseline;\
-      justify-content: space-between;\
-      gap: 12px;\
-      margin-bottom: 6px;\
-    \}\
-\
-    .cardTitle strong\{\
-      font-size: 1.02rem;\
-      color: var(--text);\
-    \}\
-\
-    .meta\{\
-      font-family: var(--mono);\
-      color: var(--muted);\
-      font-size: 0.86rem;\
-      white-space: nowrap;\
-    \}\
-\
-    ul\{\
-      margin: 10px 0 0 0;\
-      padding-left: 18px;\
-      color: var(--muted);\
-    \}\
-    li\{ margin-bottom: 8px; \}\
-\
-    .contactRow\{\
-      display:flex;\
-      flex-wrap: wrap;\
-      gap: 10px;\
-      margin-top: 10px;\
-      font-family: var(--mono);\
-    \}\
-\
-    .chip\{\
-      display:inline-flex;\
-      align-items:center;\
-      gap: 8px;\
-      border: 1px solid var(--line);\
-      background: rgba(10,25,47,.35);\
-      padding: 10px 12px;\
-      border-radius: 999px;\
-      color: var(--text);\
-    \}\
-    .chip span\{ color: var(--muted); \}\
-\
-    .footer\{\
-      margin-top: 18px;\
-      padding-top: 14px;\
-      border-top: 1px solid var(--line);\
-      color: var(--muted);\
-      font-size: 0.92rem;\
-    \}\
-\
-    /* About section layout (UPDATED: bigger photo) */\
-    .about-grid \{\
-      display: grid;\
-      grid-template-columns: 300px 1fr; /* was 220px */\
-      gap: 30px;\
-      align-items: start;\
-    \}\
-\
-    .about-photo \{\
-      position: relative;\
-      width: 100%;\
-      max-width: 300px; /* was 220px */\
-      aspect-ratio: 1 / 1;\
-      border-radius: 16px;\
-      overflow: hidden;\
-      border: 2px solid rgba(100,255,218,.35);\
-      background: rgba(10,25,47,.35);\
-    \}\
-\
-    .about-photo img \{\
-      width: 100%;\
-      height: 100%;\
-      object-fit: cover;\
-      display: block;\
-    \}\
-\
-    .about-photo::after \{\
-      content: "";\
-      position: absolute;\
-      inset: 0;\
-      box-shadow: inset 0 0 0 2px rgba(10,25,47,.4);\
-    \}\
-\
-    /* Mobile stacking */\
-    @media (max-width: 900px)\{\
-      .wrap\{ grid-template-columns: 1fr; \}\
-      .sidebar\{ position: relative; top: 0; \}\
-    \}\
-    @media (max-width: 700px) \{\
-      .about-grid \{ grid-template-columns: 1fr; \}\
-      .about-photo \{ max-width: 240px; \} /* was 180px */\
-    \}\
-  </style>\
-</head>\
-\
-<body>\
-  <div class="wrap">\
-\
-    <!-- LEFT SIDEBAR -->\
-    <aside class="sidebar">\
-      <h1 class="name">Arnav Kamath</h1>\
-      <p class="subtitle">Freshman \'95 Palo Alto High School</p>\
-\
-      <a class="resume-btn"\
-         href="./Arnav%20Resume%20Jan%202026.pdf"\
-         target="_blank"\
-         rel="noopener noreferrer"\
-         aria-label="View Arnav Kamath resume PDF">\
-        View R\'e9sum\'e9 (PDF) \uc0\u8599 \
-      </a>\
-\
-      <div class="quicklinks">\
-        <a href="#about" data-jump="about">01. About</a>\
-        <a href="#education" data-jump="education">02. Education</a>\
-        <a href="#activities" data-jump="activities">03. Activities</a>\
-        <a href="#service" data-jump="service">04. Volunteering</a>\
-        <a href="#awards" data-jump="awards">05. Awards</a>\
-        <a href="#interests" data-jump="interests">06. Interests</a>\
-        <a href="#contact" data-jump="contact">07. Contact</a>\
-      </div>\
-\
-      <div class="note">\
-        This site is a living snapshot of what I\'92m working on \'97 and a place to document what comes next.\
-      </div>\
-    </aside>\
-\
-    <!-- MAIN -->\
-    <main class="main">\
-      <div class="topbar">\
-        <ul class="tabs" role="tablist" aria-label="Sections">\
-          <li><button class="tabbtn" role="tab" aria-selected="true" data-tab="about">About</button></li>\
-          <li><button class="tabbtn" role="tab" aria-selected="false" data-tab="education">Education</button></li>\
-          <li><button class="tabbtn" role="tab" aria-selected="false" data-tab="activities">Activities</button></li>\
-          <li><button class="tabbtn" role="tab" aria-selected="false" data-tab="service">Volunteering</button></li>\
-          <li><button class="tabbtn" role="tab" aria-selected="false" data-tab="awards">Awards</button></li>\
-          <li><button class="tabbtn" role="tab" aria-selected="false" data-tab="interests">Interests</button></li>\
-          <li><button class="tabbtn" role="tab" aria-selected="false" data-tab="contact">Contact</button></li>\
-        </ul>\
-      </div>\
-\
-      <div class="content">\
-\
-        <!-- ABOUT -->\
-        <section id="about" class="section active">\
-          <p class="kicker">01 \'95 About</p>\
-          <h2>Building, debating, and showing up for my community</h2>\
-\
-          <div class="about-grid">\
-            <div class="about-photo">\
-              <img src="profile.jpg" alt="Arnav Kamath portrait">\
-            </div>\
-\
-            <div>\
-              <p>\
-                I\'92m a high school freshman with interests in engineering, robotics,\
-                and technology. I like working in teams, learning fast, and turning\
-                ideas into something real.\
-              </p>\
-              <p>\
-                Outside of academics, I\'92m involved in debate and music, and I volunteer\
-                locally. Those experiences help me practice communication, leadership,\
-                and consistency \'97 the same skills that matter in engineering.\
-              </p>\
-            </div>\
-          </div>\
-        </section>\
-\
-        <!-- EDUCATION (UNCHANGED) -->\
-        <section id="education" class="section">\
-          <p class="kicker">02 \'95 Education</p>\
-          <h2>Coursework</h2>\
-\
-          <div class="grid">\
-            <div class="card">\
-              <div class="cardTitle">\
-                <strong>Palo Alto High School</strong>\
-                <span class="meta">Freshman</span>\
-              </div>\
-              <ul>\
-                <li>Algebra II / Trigonometry (Honors)</li>\
-                <li>Biology</li>\
-                <li>Spanish 3 (Honors)</li>\
-                <li>Orchestra</li>\
-                <li><span class="meta">GPA:</span> 3.8 (unweighted)</li>\
-              </ul>\
-            </div>\
-\
-            <div class="card">\
-              <div class="cardTitle">\
-                <strong>Foothill College</strong>\
-                <span class="meta">Dual Enrollment</span>\
-              </div>\
-              <ul>\
-                <li>Introduction to Python Programming</li>\
-                <li>Java Object-Oriented Programming</li>\
-                <li><span class="meta">GPA:</span> 4.0 (unweighted)</li>\
-              </ul>\
-            </div>\
-          </div>\
-        </section>\
-\
-        <!-- ACTIVITIES (REMOVED BACKGROUND TEXT) -->\
-        <section id="activities" class="section">\
-          <p class="kicker">03 \'95 Activities</p>\
-          <h2>Teams where I practice building + thinking</h2>\
-\
-          <div class="grid">\
-            <div class="card">\
-              <div class="cardTitle">\
-                <strong>Paly Robotics (Team 8)</strong>\
-                <span class="meta">Design Team</span>\
-              </div>\
-            </div>\
-\
-            <div class="card">\
-              <div class="cardTitle">\
-                <strong>Paly Debate</strong>\
-                <span class="meta">Parliamentary \'95 JV</span>\
-              </div>\
-            </div>\
-\
-            <div class="card">\
-              <div class="cardTitle">\
-                <strong>Business Competition Club</strong>\
-                <span class="meta">Member</span>\
-              </div>\
-            </div>\
-          </div>\
-        </section>\
-\
-        <!-- SERVICE (UNCHANGED) -->\
-        <section id="service" class="section">\
-          <p class="kicker">04 \'95 Volunteering</p>\
-          <h2>Showing up consistently</h2>\
-\
-          <div class="grid">\
-            <div class="card">\
-              <div class="cardTitle">\
-                <strong>Paly Music Program</strong>\
-                <span class="meta">Volunteer</span>\
-              </div>\
-              <p>Supported a flea market food stall fundraiser for the high school music program.</p>\
-            </div>\
-\
-            <div class="card">\
-              <div class="cardTitle">\
-                <strong>Ecumenical Hunger Program</strong>\
-                <span class="meta">Volunteer</span>\
-              </div>\
-              <p>Helped organize and distribute food and basic supplies to local families.</p>\
-            </div>\
-\
-            <div class="card">\
-              <div class="cardTitle">\
-                <strong>Gamble Garden</strong>\
-                <span class="meta">Volunteer</span>\
-              </div>\
-              <p>Garden maintenance and visitor experience support during public hours.</p>\
-            </div>\
-\
-            <div class="card">\
-              <div class="cardTitle">\
-                <strong>East Palo Alto Senior Center</strong>\
-                <span class="meta">Volunteer</span>\
-              </div>\
-              <p>Assisted staff and engaged with community members to support senior programs.</p>\
-            </div>\
-\
-            <div class="card">\
-              <div class="cardTitle">\
-                <strong>CTRL ALT DELETE</strong>\
-                <span class="meta">Technology Volunteer</span>\
-              </div>\
-              <p>Assisted with technology setup, infrastructure support, and event logistics.</p>\
-            </div>\
-          </div>\
-        </section>\
-\
-        <!-- AWARDS (UNCHANGED) -->\
-        <section id="awards" class="section">\
-          <p class="kicker">05 \'95 Awards</p>\
-          <h2>Milestones I\'92m proud of</h2>\
-\
-          <div class="card">\
-            <ul>\
-              <li>First Lego League NorCal District Qualifier \'97 2022, 2024</li>\
-              <li>Elizabeth Stewart Writing Contest Winner \'97 2024</li>\
-              <li>Paly Robotics Summer Camp Winner \'97 2025</li>\
-              <li>Proficient in Spanish</li>\
-            </ul>\
-          </div>\
-        </section>\
-\
-        <!-- INTERESTS (REMOVE SAILING/BASKETBALL TEXT, KEEP MUSIC) -->\
-        <section id="interests" class="section">\
-          <p class="kicker">06 \'95 Interests</p>\
-          <h2>What keeps me balanced</h2>\
-\
-          <div class="grid">\
-            <div class="card">\
-              <div class="cardTitle">\
-                <strong>Music</strong>\
-              </div>\
-              <ul>\
-                <li>Piano (ABRSM 6)</li>\
-                <li>Viola (High School Symphony Orchestra)</li>\
-              </ul>\
-            </div>\
-\
-            <div class="card">\
-              <div class="cardTitle">\
-                <strong>Sailing</strong>\
-                <span class="meta">Laser \'95 Advanced</span>\
-              </div>\
-            </div>\
-\
-            <div class="card">\
-              <div class="cardTitle">\
-                <strong>Basketball</strong>\
-                <span class="meta">Hobby</span>\
-              </div>\
-            </div>\
-          </div>\
-        </section>\
-\
-        <!-- CONTACT (EMAIL + LINKEDIN + PHONE) -->\
-        <section id="contact" class="section">\
-          <p class="kicker">07 \'95 Contact</p>\
-          <h2>Let\'92s connect</h2>\
-          <p>Replace the placeholders below with your real info.</p>\
-\
-          <div class="contactRow">\
-            <div class="chip">\uc0\u55357 \u56551  <span>Email:</span> <a href="mailto:arnavvkamath@gmail.com">arnavvkamath@gmail.com</a></div>\
-            <div class="chip">\uc0\u55357 \u56599  <span>LinkedIn:</span> <a href="#" target="_blank" rel="noreferrer">linkedin.com/in/yourname</a></div>\
-            <div class="chip">\uc0\u55357 \u56561  <span>Phone:</span> <a href="tel:+16507147584">(650) 714-7584</a></div>\
-          </div>\
-\
-          <div class="footer">\
-            Tip: add 1\'962 real projects next (even small ones) and link them here. That\'92s what makes the site pop.\
-          </div>\
-        </section>\
-\
-      </div>\
-    </main>\
-\
-  </div>\
-\
-  <script>\
-    const buttons = Array.from(document.querySelectorAll(".tabbtn"));\
-    const sections = Array.from(document.querySelectorAll(".section"));\
-\
-    function activate(tabId) \{\
-      sections.forEach(s => s.classList.toggle("active", s.id === tabId));\
-      buttons.forEach(b => b.setAttribute("aria-selected", b.dataset.tab === tabId ? "true" : "false"));\
-      if (location.hash !== "#" + tabId) history.replaceState(null, "", "#" + tabId);\
-    \}\
-\
-    buttons.forEach(btn => btn.addEventListener("click", () => activate(btn.dataset.tab)));\
-\
-    document.querySelectorAll("[data-jump]").forEach(a => \{\
-      a.addEventListener("click", (e) => \{\
-        e.preventDefault();\
-        activate(a.dataset.jump);\
-      \});\
-    \});\
-\
-    const initial = (location.hash || "#about").replace("#", "");\
-    const exists = sections.some(s => s.id === initial);\
-    activate(exists ? initial : "about");\
-  </script>\
-</body>\
-</html>\
-}
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Arnav Kamath</title>
+  <meta name="description" content="Arnav Kamath — student portfolio" />
+
+  <style>
+    :root{
+      --bg:#0a192f;
+      --panel:#112240;
+      --panel2:#0b1b33;
+      --text:#ccd6f6;
+      --muted:#8892b0;
+      --accent:#64ffda;
+      --line: rgba(255,255,255,.08);
+      --shadow: 0 10px 30px rgba(2,12,27,.55);
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --sans: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      --radius: 16px;
+    }
+
+    *{ box-sizing:border-box; }
+    html,body{ height:100%; }
+    body{
+      margin:0;
+      background: radial-gradient(900px 500px at 20% 10%, rgba(100,255,218,.10), transparent 55%),
+                  radial-gradient(800px 500px at 85% 0%, rgba(37,99,235,.12), transparent 60%),
+                  var(--bg);
+      color:var(--text);
+      font-family:var(--sans);
+      line-height:1.6;
+    }
+
+    a{ color: var(--accent); text-decoration:none; }
+    a:hover{ text-decoration:underline; }
+
+    .wrap{
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 28px 18px;
+      display:grid;
+      grid-template-columns: 320px 1fr;
+      gap: 22px;
+      min-height: 100vh;
+    }
+
+    /* Sidebar */
+    .sidebar{
+      position: sticky;
+      top: 18px;
+      align-self: start;
+      background: rgba(17,34,64,.55);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 22px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
+    }
+
+    .name{
+      font-size: 1.9rem;
+      letter-spacing: -0.02em;
+      margin: 0 0 8px 0;
+    }
+
+    .subtitle{
+      margin: 0 0 14px 0;
+      color: var(--muted);
+      font-size: 0.98rem;
+    }
+
+    /* Resume button */
+    .resume-btn {
+      display: inline-block;
+      margin-top: 12px;
+      padding: 12px 18px;
+      width: 100%;
+      text-align: center;
+      border: 1.5px solid rgba(100,255,218,.75);
+      border-radius: 999px;
+      font-family: var(--mono);
+      font-size: 0.95rem;
+      color: var(--accent);
+      background: rgba(100,255,218,.06);
+      transition: all .2s ease;
+    }
+
+    .resume-btn:hover {
+      background: rgba(100,255,218,.15);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(100,255,218,.25);
+      text-decoration: none;
+    }
+
+    .quicklinks{
+      margin-top: 18px;
+      display:flex;
+      flex-direction:column;
+      gap: 10px;
+      border-top: 1px solid var(--line);
+      padding-top: 16px;
+    }
+
+    .quicklinks a{
+      color: var(--text);
+      font-family: var(--mono);
+      font-size: 0.92rem;
+      opacity: .88;
+    }
+    .quicklinks a:hover{ opacity: 1; }
+
+    .note{
+      margin-top: 18px;
+      padding-top: 14px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    /* Main */
+    .main{
+      background: rgba(11,27,51,.42);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+
+    .topbar{
+      padding: 14px 14px 0 14px;
+      border-bottom: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(17,34,64,.55), rgba(11,27,51,.15));
+    }
+
+    .tabs{
+      display:flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      padding: 10px;
+      margin: 0;
+      list-style:none;
+    }
+
+    .tabbtn{
+      border: 1px solid var(--line);
+      background: rgba(10,25,47,.35);
+      color: var(--text);
+      padding: 10px 12px;
+      border-radius: 999px;
+      cursor: pointer;
+      font-family: var(--mono);
+      font-size: 0.9rem;
+      transition: transform .08s ease, border-color .2s ease, background .2s ease;
+    }
+    .tabbtn:hover{
+      border-color: rgba(100,255,218,.45);
+      transform: translateY(-1px);
+    }
+    .tabbtn[aria-selected="true"]{
+      border-color: rgba(100,255,218,.75);
+      background: rgba(100,255,218,.10);
+      color: var(--accent);
+    }
+
+    .content{
+      padding: 22px;
+    }
+
+    .section{
+      display:none;
+      animation: fadeUp .18s ease-out;
+    }
+    .section.active{ display:block; }
+
+    @keyframes fadeUp{
+      from{ opacity:0; transform: translateY(6px); }
+      to{ opacity:1; transform: translateY(0); }
+    }
+
+    .kicker{
+      font-family: var(--mono);
+      color: var(--accent);
+      font-size: 0.9rem;
+      margin: 0 0 8px 0;
+    }
+
+    h2{
+      margin: 0 0 12px 0;
+      letter-spacing: -0.01em;
+      font-size: 1.45rem;
+    }
+
+    p{ margin: 0 0 12px 0; color: var(--muted); }
+
+    .grid{
+      display:grid;
+      gap: 12px;
+      grid-template-columns: 1fr;
+    }
+
+    .card{
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 14px;
+      background: rgba(17,34,64,.45);
+    }
+
+    .cardTitle{
+      display:flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 6px;
+    }
+
+    .cardTitle strong{
+      font-size: 1.02rem;
+      color: var(--text);
+    }
+
+    .meta{
+      font-family: var(--mono);
+      color: var(--muted);
+      font-size: 0.86rem;
+      white-space: nowrap;
+    }
+
+    ul{
+      margin: 10px 0 0 0;
+      padding-left: 18px;
+      color: var(--muted);
+    }
+    li{ margin-bottom: 8px; }
+
+    .contactRow{
+      display:flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 10px;
+      font-family: var(--mono);
+    }
+
+    .chip{
+      display:inline-flex;
+      align-items:center;
+      gap: 8px;
+      border: 1px solid var(--line);
+      background: rgba(10,25,47,.35);
+      padding: 10px 12px;
+      border-radius: 999px;
+      color: var(--text);
+    }
+    .chip span{ color: var(--muted); }
+
+    .footer{
+      margin-top: 18px;
+      padding-top: 14px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    /* About section layout (bigger photo) */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 300px 1fr;
+      gap: 30px;
+      align-items: start;
+    }
+
+    .about-photo {
+      position: relative;
+      width: 100%;
+      max-width: 300px;
+      aspect-ratio: 1 / 1;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 2px solid rgba(100,255,218,.35);
+      background: rgba(10,25,47,.35);
+    }
+
+    .about-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .about-photo::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      box-shadow: inset 0 0 0 2px rgba(10,25,47,.4);
+    }
+
+    /* Mobile stacking */
+    @media (max-width: 900px){
+      .wrap{ grid-template-columns: 1fr; }
+      .sidebar{ position: relative; top: 0; }
+    }
+    @media (max-width: 700px) {
+      .about-grid { grid-template-columns: 1fr; }
+      .about-photo { max-width: 240px; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+
+    <!-- LEFT SIDEBAR -->
+    <aside class="sidebar">
+      <h1 class="name">Arnav Kamath</h1>
+      <p class="subtitle">Freshman • Palo Alto High School</p>
+
+      <a class="resume-btn"
+         href="./Arnav%20Resume%20Jan%202026.pdf"
+         target="_blank"
+         rel="noopener noreferrer"
+         aria-label="View Arnav Kamath resume PDF">
+        View Résumé (PDF) ↗
+      </a>
+
+      <div class="quicklinks">
+        <a href="#about" data-jump="about">01. About</a>
+        <a href="#education" data-jump="education">02. Education</a>
+        <a href="#activities" data-jump="activities">03. Activities</a>
+        <a href="#service" data-jump="service">04. Volunteering</a>
+        <a href="#awards" data-jump="awards">05. Awards</a>
+        <a href="#interests" data-jump="interests">06. Interests</a>
+        <a href="#contact" data-jump="contact">07. Contact</a>
+      </div>
+
+      <div class="note">
+        This site is a living snapshot of what I’m working on — and a place to document what comes next.
+      </div>
+    </aside>
+
+    <!-- MAIN -->
+    <main class="main">
+      <div class="topbar">
+        <ul class="tabs" role="tablist" aria-label="Sections">
+          <li><button class="tabbtn" role="tab" aria-selected="true" data-tab="about">About</button></li>
+          <li><button class="tabbtn" role="tab" aria-selected="false" data-tab="education">Education</button></li>
+          <li><button class="tabbtn" role="tab" aria-selected="false" data-tab="activities">Activities</button></li>
+          <li><button class="tabbtn" role="tab" aria-selected="false" data-tab="service">Volunteering</button></li>
+          <li><button class="tabbtn" role="tab" aria-selected="false" data-tab="awards">Awards</button></li>
+          <li><button class="tabbtn" role="tab" aria-selected="false" data-tab="interests">Interests</button></li>
+          <li><button class="tabbtn" role="tab" aria-selected="false" data-tab="contact">Contact</button></li>
+        </ul>
+      </div>
+
+      <div class="content">
+
+        <!-- ABOUT -->
+        <section id="about" class="section active">
+          <p class="kicker">01 • About</p>
+          <h2>Building, debating, and showing up for my community</h2>
+
+          <div class="about-grid">
+            <div class="about-photo">
+              <img src="profile.jpg" alt="Arnav Kamath portrait">
+            </div>
+
+            <div>
+              <p>
+                I’m a high school freshman with interests in engineering, robotics,
+                and technology. I like working in teams, learning fast, and turning
+                ideas into something real.
+              </p>
+              <p>
+                Outside of academics, I’m involved in debate and music, and I volunteer
+                locally. Those experiences help me practice communication, leadership,
+                and consistency — the same skills that matter in engineering.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- EDUCATION -->
+        <section id="education" class="section">
+          <p class="kicker">02 • Education</p>
+          <h2>Coursework</h2>
+
+          <div class="grid">
+            <div class="card">
+              <div class="cardTitle">
+                <strong>Palo Alto High School</strong>
+                <span class="meta">Freshman</span>
+              </div>
+              <ul>
+                <li>Algebra II / Trigonometry (Honors)</li>
+                <li>Biology</li>
+                <li>Spanish 3 (Honors)</li>
+                <li>Orchestra</li>
+                <li><span class="meta">GPA:</span> 3.8 (unweighted)</li>
+              </ul>
+            </div>
+
+            <div class="card">
+              <div class="cardTitle">
+                <strong>Foothill College</strong>
+                <span class="meta">Dual Enrollment</span>
+              </div>
+              <ul>
+                <li>Introduction to Python Programming</li>
+                <li>Java Object-Oriented Programming</li>
+                <li><span class="meta">GPA:</span> 4.0 (unweighted)</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <!-- ACTIVITIES (no background text) -->
+        <section id="activities" class="section">
+          <p class="kicker">03 • Activities</p>
+          <h2>Activities</h2>
+
+          <div class="grid">
+            <div class="card">
+              <div class="cardTitle">
+                <strong>Paly Robotics (Team 8)</strong>
+                <span class="meta">Design Team member</span>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="cardTitle">
+                <strong>Paly Debate</strong>
+                <span class="meta">Parliamentary • JV</span>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="cardTitle">
+                <strong>Business Competition Club</strong>
+                <span class="meta">Member</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- VOLUNTEERING -->
+        <section id="service" class="section">
+          <p class="kicker">04 • Volunteering</p>
+          <h2>Showing up consistently</h2>
+
+          <div class="grid">
+            <div class="card">
+              <div class="cardTitle">
+                <strong>Paly Music Program</strong>
+                <span class="meta">Volunteer</span>
+              </div>
+              <p>Supported a flea market food stall fundraiser for the high school music program.</p>
+            </div>
+
+            <div class="card">
+              <div class="cardTitle">
+                <strong>Ecumenical Hunger Program</strong>
+                <span class="meta">Volunteer</span>
+              </div>
+              <p>Helped organize and distribute food and basic supplies to local families.</p>
+            </div>
+
+            <div class="card">
+              <div class="cardTitle">
+                <strong>Gamble Garden</strong>
+                <span class="meta">Volunteer</span>
+              </div>
+              <p>Garden maintenance and visitor experience support during public hours.</p>
+            </div>
+
+            <div class="card">
+              <div class="cardTitle">
+                <strong>East Palo Alto Senior Center</strong>
+                <span class="meta">Volunteer</span>
+              </div>
+              <p>Assisted staff and engaged with community members to support senior programs.</p>
+            </div>
+
+            <div class="card">
+              <div class="cardTitle">
+                <strong>CTRL ALT DELETE</strong>
+                <span class="meta">Technology Volunteer</span>
+              </div>
+              <p>Assisted with technology setup, infrastructure support, and event logistics.</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- AWARDS -->
+        <section id="awards" class="section">
+          <p class="kicker">05 • Awards</p>
+          <h2>Milestones I’m proud of</h2>
+
+          <div class="card">
+            <ul>
+              <li>First Lego League NorCal District Qualifier — 2022, 2024</li>
+              <li>Elizabeth Stewart Writing Contest Winner — 2024</li>
+              <li>Paly Robotics Summer Camp Winner — 2025</li>
+              <li>Proficient in Spanish</li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- INTERESTS (no background text for sailing/basketball) -->
+        <section id="interests" class="section">
+          <p class="kicker">06 • Interests</p>
+          <h2>What keeps me balanced</h2>
+
+          <div class="grid">
+            <div class="card">
+              <div class="cardTitle">
+                <strong>Music</strong>
+              </div>
+              <ul>
+                <li>Piano (ABRSM 6)</li>
+                <li>Viola (High School Symphony Orchestra)</li>
+              </ul>
+            </div>
+
+            <div class="card">
+              <div class="cardTitle">
+                <strong>Sailing</strong>
+                <span class="meta">Laser • Advanced</span>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="cardTitle">
+                <strong>Basketball</strong>
+                <span class="meta">Hobby</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- CONTACT (email + linkedin + phone) -->
+        <section id="contact" class="section">
+          <p class="kicker">07 • Contact</p>
+          <h2>Let’s connect</h2>
+          <p>Replace the placeholders below with your real info.</p>
+
+          <div class="contactRow">
+            <div class="chip">📧 <span>Email:</span> <a href="mailto:youremail@example.com">youremail@example.com</a></div>
+            <div class="chip">🔗 <span>LinkedIn:</span> <a href="#" target="_blank" rel="noreferrer">linkedin.com/in/yourname</a></div>
+            <div class="chip">📱 <span>Phone:</span> <a href="tel:+16501234567">(650) 123-4567</a></div>
+          </div>
+
+          <div class="footer">
+            Tip: add 1–2 real projects next (even small ones) and link them here. That’s what makes the site pop.
+          </div>
+        </section>
+
+      </div>
+    </main>
+  </div>
+
+  <script>
+    const buttons = Array.from(document.querySelectorAll(".tabbtn"));
+    const sections = Array.from(document.querySelectorAll(".section"));
+
+    function activate(tabId) {
+      sections.forEach(s => s.classList.toggle("active", s.id === tabId));
+      buttons.forEach(b => b.setAttribute("aria-selected", b.dataset.tab === tabId ? "true" : "false"));
+      if (location.hash !== "#" + tabId) history.replaceState(null, "", "#" + tabId);
+    }
+
+    buttons.forEach(btn => btn.addEventListener("click", () => activate(btn.dataset.tab)));
+
+    document.querySelectorAll("[data-jump]").forEach(a => {
+      a.addEventListener("click", (e) => {
+        e.preventDefault();
+        activate(a.dataset.jump);
+      });
+    });
+
+    const initial = (location.hash || "#about").replace("#", "");
+    const exists = sections.some(s => s.id === initial);
+    activate(exists ? initial : "about");
+  </script>
+</body>
+</html>
